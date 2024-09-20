@@ -7,19 +7,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a78e739-ad60-49f4-9680-4c2c7d0c0903" name="Changes" comment="first proper commit">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Employees_Management_System/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net6.0/CoffeeShopp.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/CoffeeShopp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/CoffeeShopp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/CoffeeShopp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/CoffeeShopp.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/CoffeeShopp.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/CoffeeShopp.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/CoffeeShopp.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/CoffeeShopp.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/CoffeeShopp.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/CoffeeShopp.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/CoffeeShopp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/CoffeeShopp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/CoffeeShopp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/CoffeeShopp.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/ref/CoffeeShopp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/ref/CoffeeShopp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/refint/CoffeeShopp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/refint/CoffeeShopp.dll" afterDir="false" />
+    <list default="true" id="4a78e739-ad60-49f4-9680-4c2c7d0c0903" name="Changes" comment="readme file created and added.">
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +98,7 @@
       <updated>1724824413853</updated>
       <workItem from="1724824415047" duration="5058000" />
       <workItem from="1726639111382" duration="4192000" />
-      <workItem from="1726645230545" duration="20940000" />
+      <workItem from="1726645230545" duration="21727000" />
     </task>
     <task id="LOCAL-00001" summary="first proper commit">
       <option name="closed" value="true" />
@@ -119,7 +108,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726817724740</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="readme file created and added.">
+      <option name="closed" value="true" />
+      <created>1726827215779</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726827215779</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +139,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="first proper commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first proper commit" />
+    <MESSAGE value="readme file created and added." />
+    <option name="LAST_COMMIT_MESSAGE" value="readme file created and added." />
   </component>
 </project>

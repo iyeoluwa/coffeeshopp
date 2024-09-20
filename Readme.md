@@ -91,7 +91,63 @@ Please choose an option (1/2): 2
 --- Login ---
 Enter Your Email Address: 
 
+```
+
+The login / register details are stored in a database (in the latter part of this documentation the database schema will be present in the Readme.)
+
+Once you have have been logged in you will see a screen that looks like this 
+
+```
+Login successful! Welcome, fajimiiyeoluwa@yahoo.com.
+welcome back to your favourite console coffee shop
+----------------------------------------
+--------------------------------------------
+-----------------------------------------------
+
+      ( (  
+       ) )  
+    ........
+    |      ||]
+    \      /
+     `----' 
+
+-----------------------------------------------
+--------------------------------------------
+----------------------------------------
+1. Show Menu
+2. Place Order
+3.Logout
+Please choose any of the options ;) :
+
+```
+
+This page gives you 3 options and they include 
+
+##### [The Menu page](#the-menu-page) 
+
+##### The Order page 
+
+##### The Logout Page
 
 
+##### The Menu Page: 
+This page displays the menu available for sale in the cafe, it also shows the 
+prices, item name and the ItemCode/ reference number.
+
+```
+
++---------------+--------------------+----------+
+|Product Code   |Item Name           |     Price|
++---------------+--------------------+----------+
+|cap123         |Cappuccino          |     $4.50|
+|hc11           |Hot Chocolate       |     $2.50|
+|mk221          |Milkshake           |     $5.50|
+|pj123          |Pinapple Juice      |     $7.50|
+|aj1234         |Apple juice         |     $7.50|
++---------------+--------------------+----------+
+
+----------------------------------------
+--------------------------------------------
+-----------------------------------------------
 
 ```
