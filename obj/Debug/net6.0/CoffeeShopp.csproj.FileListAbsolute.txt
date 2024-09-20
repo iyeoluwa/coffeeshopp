@@ -20,3 +20,4 @@
 /Users/iyeoluwafajimi/RiderProjects/coffeeshop2/CoffeeShopp/obj/Debug/net6.0/CoffeeShopp.pdb
 /Users/iyeoluwafajimi/RiderProjects/coffeeshop2/CoffeeShopp/obj/Debug/net6.0/CoffeeShopp.genruntimeconfig.cache
 /Users/iyeoluwafajimi/RiderProjects/coffeeshop2/CoffeeShopp/obj/Debug/net6.0/ref/CoffeeShopp.dll
+/Users/iyeoluwafajimi/RiderProjects/coffeeshop2/CoffeeShopp/obj/Debug/net6.0/CoffeeShopp.sourcelink.json
