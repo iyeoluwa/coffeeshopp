@@ -81,18 +81,6 @@ class Program
             
         }
         
-        // Console.WriteLine("Press any key to view our menu");
-        // Console.ReadKey();
-        // Console.WriteLine("----------------------------------------");
-        // Console.WriteLine("--------------------------------------------");
-        // Console.WriteLine("-----------------------------------------------");
-        // Console.WriteLine("Kindly View Our CoffeeSHop Menu");
-        // Console.WriteLine("-----------------------------------------------");
-        // ShowMenu();
-        // Console.WriteLine("Press any key to order any meal.");
-        // Console.ReadKey();
-
-
     }
 
 
@@ -146,12 +134,13 @@ class Program
         {
             connection.Open();
            int productId =  getproductID(code);
-            string SelectQuery = "Insert into Orders (ProductId,CustomerId,Date)VALUES (@productid,@customerid,@currentDate)";// this is the insert statement that inserts orders 
+            string SelectQuery = "Insert into Orders (ProductId,CustomerId,Date,TotalAmount)VALUES (@productid,@customerid,@currentDate,@amount)";// this is the insert statement that inserts orders 
             using (SqlCommand command = new SqlCommand(SelectQuery, connection))
             {
                 command.Parameters.AddWithValue("@productid", productId);
                 command.Parameters.AddWithValue("@customerid", getCustomerCredentials(LoggedInUser));
                 command.Parameters.AddWithValue("@currentDate", currentDate);
+                command.Parameters.AddWithValue("@amount", getSingleDetailFromDb(true,"products","price","Product_code", code));
                 command.ExecuteNonQuery();
             }
             
@@ -353,5 +342,48 @@ class Program
 
         return productId;  // Convert the List to an array before returning
     }
+    
+    /*
+     * I just could not be bothered creating new methods for individual queries, so i decided to create a method that can always be used
+     * Interchangeably.
+     *
+     * Please note that when you want to return an int  or double result make sure that the TestReturn is `True` otherwise please make it false.
+     */
+    
+static object? getSingleDetailFromDb(
+    bool TestReturn, 
+    string TableName, 
+    string ColumnName, 
+    string ColumnGet, 
+    object ResultMatch)
+{
+    
+    object? returnValue = null;
+
+    using (SqlConnection connection = new SqlConnection(connectionString))
+    {
+        connection.Open();
+
+        // Build the SQL query
+        string selectQuery = $"SELECT {ColumnName} FROM {TableName} WHERE {ColumnGet} = @value";
+        using (SqlCommand command = new SqlCommand(selectQuery, connection))
+        {
+            // Add the parameter, ensuring type safety by passing the ResultMatch as an object
+            command.Parameters.AddWithValue("@value", ResultMatch);
+
+            // Execute the query and fetch the result
+            object? result = command.ExecuteScalar();
+
+            if (result != null)
+            {
+                // Return the result directly as an object
+                returnValue = result;
+            }
+        }
+    }
+
+    // Return the object, which could be a string, int, or double, depending on the query result
+    return returnValue;
+}
 }
 
