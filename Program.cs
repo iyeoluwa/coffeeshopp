@@ -125,27 +125,36 @@ class Program
     {
         //this method handles the placing of orders
         //collect the order to be bought 
-        // check if the the user has an account/ or the user is logged in.
+        // check if the user has an account/ or the user is logged in.
         
-        Console.WriteLine("Type the code of the item on the menu to order");
-        String code = Console.ReadLine();
+        Console.WriteLine("1. Make a single Order");
+        Console.WriteLine("2. Make Multiple Orders");
+        Console.Write("Please choose an option (1/2) to place your order: ");
         
-        using (SqlConnection connection = new SqlConnection(connectionString))
+        switch (Console.ReadLine())
         {
-            connection.Open();
-           int productId =  getproductID(code);
-            string SelectQuery = "Insert into Orders (ProductId,CustomerId,Date,TotalAmount)VALUES (@productid,@customerid,@currentDate,@amount)";// this is the insert statement that inserts orders 
-            using (SqlCommand command = new SqlCommand(SelectQuery, connection))
-            {
-                command.Parameters.AddWithValue("@productid", productId);
-                command.Parameters.AddWithValue("@customerid", getCustomerCredentials(LoggedInUser));
-                command.Parameters.AddWithValue("@currentDate", currentDate);
-                command.Parameters.AddWithValue("@amount", getSingleDetailFromDb(true,"products","price","Product_code", code));
-                command.ExecuteNonQuery();
-            }
-            
-            Console.WriteLine("Order Placed successfully.");
+            case "1":
+                String code = Console.ReadLine();
+                singleOrder(code);
+                
+                break;
+            case "2":
+                Console.WriteLine("Please enter the product codes for the orders (separated by spaces):");
+                string input = Console.ReadLine();
+    
+                // Split the input string by spaces to get an array of product codes
+                string[] productCodes = input.Split(' ');
+
+                // Place multiple orders
+                multipleOrders(productCodes);
+                break;
+            default:
+                Console.WriteLine("Invalid choice. Please try again.");
+                break;
         }
+       
+        
+       
     }
     
      static void Signup()
@@ -385,5 +394,51 @@ static object? getSingleDetailFromDb(
     // Return the object, which could be a string, int, or double, depending on the query result
     return returnValue;
 }
+
+static void singleOrder(string productCode)
+{
+    
+    using (SqlConnection connection = new SqlConnection(connectionString))
+    {
+        connection.Open();
+        int productId =  getproductID(productCode);
+        string SelectQuery = "Insert into Orders (ProductId,CustomerId,Date,TotalAmount)VALUES (@productid,@customerid,@currentDate,@amount)";// this is the insert statement that inserts orders 
+        using (SqlCommand command = new SqlCommand(SelectQuery, connection))
+        {
+            command.Parameters.AddWithValue("@productid", productId);
+            command.Parameters.AddWithValue("@customerid", getCustomerCredentials(LoggedInUser));
+            command.Parameters.AddWithValue("@currentDate", currentDate);
+            command.Parameters.AddWithValue("@amount", getSingleDetailFromDb(true,"products","price","Product_code", productCode));
+            command.ExecuteNonQuery();
+        }
+            
+        Console.WriteLine("Order Placed successfully.");
+    }
+}
+
+static void multipleOrders(string[] productCodes)
+{
+    using (SqlConnection connection = new SqlConnection(connectionString))
+    {
+        connection.Open();
+        foreach (var productCode in productCodes)
+        {
+            int productId =  getproductID(productCode);
+            string SelectQuery = "Insert into Orders (ProductId,CustomerId,Date,TotalAmount)VALUES (@productid,@customerid,@currentDate,@amount)";// this is the insert statement that inserts orders 
+            using (SqlCommand command = new SqlCommand(SelectQuery, connection))
+            {
+                command.Parameters.AddWithValue("@productid", productId);
+                command.Parameters.AddWithValue("@customerid", getCustomerCredentials(LoggedInUser));
+                command.Parameters.AddWithValue("@currentDate", currentDate);
+                command.Parameters.AddWithValue("@amount", getSingleDetailFromDb(true,"products","price","Product_code", productCode));
+                command.ExecuteNonQuery();
+            }
+        }
+       
+            
+        Console.WriteLine("All orders placed successfully.");
+    }
+}
+
 }
 
