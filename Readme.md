@@ -286,3 +286,75 @@ To make an edit to the order page you need to type in the Order Id
 
 
 In General we have a fully functioning console that is extremely easy to navigate
+
+
+
+This is the sql code of the database
+
+```mssql
+create table Customers
+(
+    customer_id int identity
+        constraint PK_Customers
+            primary key,
+    name        nvarchar(50) not null,
+    phonenumber int          not null,
+    email       nvarchar(50) not null,
+    password    int          not null
+)
+go
+
+create table Employees
+(
+    Employee_id int identity
+        constraint Employees_pk
+            primary key,
+    Name        nvarchar not null,
+    Position    nvarchar not null
+)
+go
+
+create table Products
+(
+    Product_id   int identity
+        constraint Products_pk
+            primary key,
+    ProductName  nvarchar(50) not null,
+    Price        float        not null,
+    Category     int          not null,
+    Product_Code nvarchar(50)
+)
+go
+
+create table Orders
+(
+    Order_id    int identity
+        constraint Orders_pk
+            primary key,
+    CustomerId  int      not null
+        constraint Customer_id_foreign
+            references Customers,
+    Date        datetime not null,
+    TotalAmount int      not null,
+    ProductId   int      not null
+        constraint productId_fk
+            references Products
+)
+go
+
+create table Payments
+(
+    Payment_id    int identity
+        constraint Payments_pk
+            primary key,
+    OrderId       int      not null
+        constraint order_id_fk
+            references Orders,
+    PaymentMethod int      not null,
+    PaymentDate   datetime not null,
+    Amount        int      not null
+)
+go
+
+
+```
