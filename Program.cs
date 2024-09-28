@@ -209,6 +209,11 @@ class Program
                 break;
             case "2":
                 NavigateTo(showOrders);
+                Console.WriteLine("\nPress B to go back.");
+                if (Console.ReadKey().Key == ConsoleKey.B)
+                {
+                    NavigateBack();
+                }
                 break;
             case "3":
                 
@@ -423,11 +428,7 @@ class Program
             }
         }
     }
-    Console.WriteLine("\nPress B to go back.");
-    if (Console.ReadKey().Key == ConsoleKey.B)
-    {
-        NavigateBack();
-    }
+    
 }
     
     static void editOrders()
