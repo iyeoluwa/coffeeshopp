@@ -115,7 +115,7 @@ welcome back to your favourite console coffee shop
 --------------------------------------------
 ----------------------------------------
 1. Show Menu
-2. Place Order
+2. Order Page
 3.Logout
 Please choose any of the options ;) :
 
@@ -151,3 +151,20 @@ prices, item name and the ItemCode/ reference number.
 -----------------------------------------------
 
 ```
+
+##### The Order Page: 
+This Page allows to place orders it contains functionalities like creating, editing and deleting orders
+
+
+
+###### Creating Orders
+This page possess two major functionalities, and they include creating one order or multiple orders 
+```
+
+Please choose any of the options ;) :2
+1. Make a single Order
+2. Make Multiple Orders
+Please choose an option (1/2) to place your order: 
+
+```
+

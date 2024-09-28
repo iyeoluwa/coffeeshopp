@@ -16,10 +16,21 @@ class Program
     
    
     private static DateTime currentDate = DateTime.Now; // Current date and time
+    
+    static Stack<Action> screenHistory = new Stack<Action>();
+    
+    
 
     static void Main(string[] args)
     {
-       
+
+        mainMenu();
+
+    }
+
+
+    static void mainMenu()
+    {
         while (true)
         {
             if (!isLoggedIn)
@@ -28,7 +39,7 @@ class Program
                 Console.WriteLine("----------------------------------------");
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine("-----------------------------------------------");
-                DrawCoffeeMug();
+                DrawWebstarsCoffeeLogo();
                 Console.WriteLine("-----------------------------------------------");
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine("----------------------------------------");
@@ -38,10 +49,10 @@ class Program
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        Signup();
+                        NavigateTo(Signup);
                         break;
                     case "2":
-                        Login();
+                        NavigateTo(Login);
                         break;
                     default:
                         Console.WriteLine("Invalid choice. Please try again.");
@@ -54,24 +65,25 @@ class Program
                 Console.WriteLine("----------------------------------------");
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine("-----------------------------------------------");
-                DrawCoffeeMug();
+                DrawWebstarsCoffeeLogo();
                 Console.WriteLine("-----------------------------------------------");
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine("----------------------------------------");
                 Console.WriteLine("1. Show Menu");
-                Console.WriteLine("2. Place Order");
+                Console.WriteLine("2. Order Page");
                 Console.WriteLine("3.Logout");
                 Console.Write("Please choose any of the options ;) :");
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        ShowMenu();
+                        NavigateTo(ShowMenu);
                         break;
                     case "2":
-                        PlaceOrders();
+                    
+                        NavigateTo(OrderPage);
                         break;
                     case "3":
-                        Login();
+                       // this is where the logout method will come in.
                         break;
                     default:
                         Console.WriteLine("Invalid choice. Please try again.");
@@ -88,6 +100,7 @@ class Program
 
     static void ShowMenu()
     {
+        Console.Clear();
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             connection.Open();
@@ -116,8 +129,44 @@ class Program
                         // Display each row with consistent column widths
                         PrintRow(productCode, itemName, price.ToString("C"), codeWidth, nameWidth, priceWidth);
                     }
+                    PrintLine(codeWidth, nameWidth, priceWidth);
                 }
             }
+        }
+    }
+
+
+    static void OrderPage()
+    {
+        Console.Clear();
+        //this method is the parent method reposnible for the routing of everything that has to do with ordering
+        Console.WriteLine("1. Make An Order");
+        Console.WriteLine("2. See what you Ordered");
+        Console.WriteLine("3. Edit your Order");
+        Console.WriteLine("4. Delete your order your Order");
+        Console.Write("Please choose any valid option: ");
+        
+        switch (Console.ReadLine())
+        {
+            case "1":
+                 NavigateTo(PlaceOrders);
+                break;
+            case "2":
+                NavigateTo(showOrders);
+                break;
+            case "3":
+                
+                // this is where the edit orders will be 
+                NavigateTo(editOrders);
+                break;
+            case "4":
+                Console.Clear();
+                // this is where the delete orders will be
+                NavigateTo(deleteOrders);
+                break;
+            default:
+                Console.WriteLine("Invalid choice. Please try again.");
+                break;
         }
     }
 
@@ -126,7 +175,7 @@ class Program
         //this method handles the placing of orders
         //collect the order to be bought 
         // check if the user has an account/ or the user is logged in.
-        
+        Console.Clear();
         Console.WriteLine("1. Make a single Order");
         Console.WriteLine("2. Make Multiple Orders");
         Console.Write("Please choose an option (1/2) to place your order: ");
@@ -134,11 +183,21 @@ class Program
         switch (Console.ReadLine())
         {
             case "1":
+                Console.Clear();
+                ShowMenu();
+                Console.WriteLine("\n \n");
+                Console.WriteLine("Please note that in this page you can only make a single order and Our item menu is place above for your convinience:");
+                Console.WriteLine("Kindly type the item code to place your order");
                 String code = Console.ReadLine();
                 singleOrder(code);
                 
                 break;
             case "2":
+                Console.Clear();
+                ShowMenu();
+                Console.WriteLine("\n \n");
+                Console.WriteLine("You can make multiple orders on this page and Our item menu is place above for your convinience:");
+                Console.WriteLine("Kindly type the item code to place your order");
                 Console.WriteLine("Please enter the product codes for the orders (separated by spaces):");
                 string input = Console.ReadLine();
     
@@ -159,6 +218,7 @@ class Program
     
      static void Signup()
         {
+            Console.Clear();
             Console.WriteLine("\n--- Signup ---");
 
             Console.Write("Enter Name: ");
@@ -227,6 +287,7 @@ class Program
 
         static void Login()
         {
+            Console.Clear();
             Console.WriteLine("\n--- Login ---");
 
             Console.Write("Enter Your Email Address: ");
@@ -276,17 +337,29 @@ class Program
             }
         }
 
-        static void DrawCoffeeMug()
+       
+    static void DrawWebstarsCoffeeLogo()
     {
-        Console.WriteLine();
-        Console.WriteLine("      ( (  ");
-        Console.WriteLine("       ) )  ");
-        Console.WriteLine("    ........");
-        Console.WriteLine("    |      ||]");
-        Console.WriteLine("    \\      /");
-        Console.WriteLine("     `----' ");
-        Console.WriteLine();
+        Console.WriteLine("**********************************************");
+        Console.WriteLine("*                                            *");
+        Console.WriteLine("*               WEBSTARS COFFEE              *");
+        Console.WriteLine("*                                            *");
+        Console.WriteLine("**********************************************");
+        Console.WriteLine("*                                            *");
+        Console.WriteLine("*                ( (        ( (              *");
+        Console.WriteLine("*                 ) )        ) )             *");
+        Console.WriteLine("*              ........    ........           *");
+        Console.WriteLine("*             |        |  |        ||]        *");
+        Console.WriteLine("*             |        |  |        |          *");
+        Console.WriteLine("*             |        |  |        |          *");
+        Console.WriteLine("*             \\        /  \\        /          *");
+        Console.WriteLine("*              `------'    `------'           *");
+        Console.WriteLine("*                                            *");
+        Console.WriteLine("*          A cup of innovation               *");
+        Console.WriteLine("*                                            *");
+        Console.WriteLine("**********************************************");
     }
+
 
     static void PrintLine(int codeWidth, int nameWidth, int priceWidth)
     {
@@ -439,6 +512,111 @@ static void multipleOrders(string[] productCodes)
         Console.WriteLine("All orders placed successfully.");
     }
 }
+
+static void deleteOrders()
+{
+    //this method shows all the orders of a particular user.
+    
+    Console.Clear();
+    
+}
+
+// now since we can add new orders, it's time to delete them, after-all you should be able to cancel order
+
+ 
+    
+    
+     static void showOrders()
+{
+    Console.Clear();
+    int customerId = getCustomerCredentials(LoggedInUser); // Get the customer ID
+    using (SqlConnection connection = new SqlConnection(connectionString))
+    {
+        connection.Open();
+        
+        // Query to get ProductId from Orders for a specific customer
+        string SelectQuery = "SELECT ProductId FROM Orders WHERE CustomerId = @userid";
+        
+        using (SqlCommand command = new SqlCommand(SelectQuery, connection))
+        {
+            command.Parameters.AddWithValue("@userid", customerId);
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                // Define column widths
+                int codeWidth = 15;
+                int nameWidth = 20;
+                int priceWidth = 10;
+                
+                // Print table header
+                PrintLine(codeWidth, nameWidth, priceWidth);
+                PrintRow("Product Code", "Item Name", "Price", codeWidth, nameWidth, priceWidth);
+                PrintLine(codeWidth, nameWidth, priceWidth);
+                
+                double totalAmount = 0;
+
+                while (reader.Read())
+                {
+                    // Assuming the ProductId is an integer
+                    int productId = reader.GetInt32(reader.GetOrdinal("ProductId"));
+
+                    // Fetch the product details for this ProductId
+                    string productCode = getSingleDetailFromDb(false, "Products", "Product_Code", "Product_Id", productId) as string;
+                    string itemName = getSingleDetailFromDb(false, "Products", "ProductName", "Product_Id",  productId) as string;
+                    double price = (double)getSingleDetailFromDb(true, "Products", "Price", "Product_Id",  productId);
+
+                    // Display each row with consistent column widths
+                    PrintRow(productCode, itemName, price.ToString("C"), codeWidth, nameWidth, priceWidth);
+
+                    // Add to the total amount
+                    totalAmount += price;
+                }
+
+                // Print the total order amount
+                PrintLine(codeWidth, nameWidth, priceWidth);
+                PrintRow("Total Amount", "", totalAmount.ToString("C"), codeWidth, nameWidth, priceWidth);
+                PrintLine(codeWidth, nameWidth, priceWidth);
+            }
+        }
+    }
+}
+
+
+
+static void NavigateTo(Action screen)
+{
+    screenHistory.Push(screen);
+    screen();
+}
+
+static void NavigateBack()
+{
+    // Remove the current screen and go back to the previous one
+    if (screenHistory.Count > 1)
+    {
+        screenHistory.Pop(); // Pop the current screen
+        var previousScreen = screenHistory.Peek(); // Get the previous screen
+        previousScreen(); // Execute the previous screen
+    }
+    else
+    {
+        // If no previous screen, go back to the main menu
+        mainMenu();
+        
+    }
+}
+static void editOrders()
+{
+    // this function provides the capacity to edit orders 
+    Console.Clear();
+   
+    
+}
+
+
+
+
+
 
 }
 
