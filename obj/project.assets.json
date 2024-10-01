@@ -472,11 +472,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/iyeoluwafajimi/Downloads/Employees_Management_System/Employees_Management_System/Employees_Management_System.csproj",
-      "projectName": "Employees_Management_System",
-      "projectPath": "/Users/iyeoluwafajimi/Downloads/Employees_Management_System/Employees_Management_System/Employees_Management_System.csproj",
+      "projectUniqueName": "/Users/iyeoluwafajimi/RiderProjects/coffeeshop2/CoffeeShopp/CoffeeShopp.csproj",
+      "projectName": "CoffeeShopp",
+      "projectPath": "/Users/iyeoluwafajimi/RiderProjects/coffeeshop2/CoffeeShopp/CoffeeShopp.csproj",
       "packagesPath": "/Users/iyeoluwafajimi/.nuget/packages/",
-      "outputPath": "/Users/iyeoluwafajimi/Downloads/Employees_Management_System/Employees_Management_System/obj/",
+      "outputPath": "/Users/iyeoluwafajimi/RiderProjects/coffeeshop2/CoffeeShopp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/iyeoluwafajimi/.nuget/NuGet/NuGet.Config"

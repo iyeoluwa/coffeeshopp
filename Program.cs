@@ -383,7 +383,7 @@ class Program
         connection.Open();
         
         // Query to get ProductId from Orders for a specific customer
-        string SelectQuery = "SELECT ProductId FROM Orders WHERE CustomerId = @userid";
+        string SelectQuery = "SELECT ProductId,Order_Id FROM Orders WHERE CustomerId = @userid";
         
         using (SqlCommand command = new SqlCommand(SelectQuery, connection))
         {
@@ -407,19 +407,21 @@ class Program
                 {
                     // Assuming the ProductId is an integer
                     int productId = reader.GetInt32(reader.GetOrdinal("ProductId"));
+                    int OrderId = reader.GetInt32(reader.GetOrdinal("Order_Id"));
 
                     // Fetch the product details for this ProductId
-                    int originalProductId = (int)getSingleDetailFromDb(true, "Orders", "Order_id", "CustomerId", customerId);
                     string productCode = getSingleDetailFromDb(false, "Products", "Product_Code", "Product_Id", productId) as string;
                     string itemName = getSingleDetailFromDb(false, "Products", "ProductName", "Product_Id",  productId) as string;
                     double price = (double)getSingleDetailFromDb(true, "Products", "Price", "Product_Id",  productId);
 
                     // Display each row with consistent column widths
-                    PrintRow(originalProductId.ToString(),productCode, itemName, price.ToString("C"), codeWidth, nameWidth, priceWidth);
+                    PrintRow(OrderId.ToString(),productCode, itemName, price.ToString("C"), codeWidth, nameWidth, priceWidth);
 
                     // Add to the total amount
                     totalAmount += price;
                 }
+
+              
 
                 // Print the total order amount
                 PrintLine(codeWidth,codeWidth, nameWidth, priceWidth);
@@ -430,6 +432,32 @@ class Program
     }
     
 }
+
+
+    static int countOrders()
+    {
+        //this method caounts the totak amount of orders that the user has in the database 
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            //type the query string 
+            string queryString = "SELECT COUNT(ORDER_ID) FROM ORDERS where CustomerId = @customerid";
+
+            using (SqlCommand command = new SqlCommand(queryString,connection))
+            {
+                command.Parameters.AddWithValue("@customerid",getCustomerCredentials(LoggedInUser));
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    int totalOrders = 0;
+                    while (reader.Read())
+                    {
+                        totalOrders ++;
+                    }
+                    return totalOrders;
+                }
+            }
+        }
+    }
     
     static void editOrders()
 {

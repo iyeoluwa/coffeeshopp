@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HaAFu4SOiq572tRSdBepB330MKkf5IR1wrzGVqJLavH2eSjT4rzM+hNWc6INYGOqvg4rUhFxoZ0dVnjRRbJCTA==",
+  "dgSpecHash": "jAS0/Tk/ziKdhJJhvjEZ4HyNqfzIh4BEy9CWcVXPxXflvflJ8FSktJyY4zgxWz+AViFdO5SycLbSubovdPAfkA==",
   "success": true,
-  "projectFilePath": "/Users/iyeoluwafajimi/Downloads/Employees_Management_System/Employees_Management_System/Employees_Management_System.csproj",
+  "projectFilePath": "/Users/iyeoluwafajimi/RiderProjects/coffeeshop2/CoffeeShopp/CoffeeShopp.csproj",
   "expectedPackageFiles": [
     "/Users/iyeoluwafajimi/.nuget/packages/microsoft.netcore.platforms/3.1.0/microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "/Users/iyeoluwafajimi/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
